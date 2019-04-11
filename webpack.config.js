@@ -56,7 +56,9 @@ module.exports = {
 	output: {
 		filename: '[name].js',
 		path: path.resolve(__dirname, 'lib')
-	},
+  },
+
+  target: 'node',
 
 	mode: 'development',
 
@@ -74,5 +76,5 @@ module.exports = {
 			minSize: 30000,
 			name: true
 		}
-	}
+  }
 };
