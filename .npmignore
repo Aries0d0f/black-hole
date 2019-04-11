@@ -1,4 +1,8 @@
-src/
+/src/
+/node_modules/
 *.log
 .editorconfig
-.babelrc
+.eslint*
+.yo-rc.json
+webpack.config.js
+yarn.lock
