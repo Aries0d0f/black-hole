@@ -1,0 +1,22 @@
+{
+  "root": true,
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "sourceType": "module",
+    "babelOptions": {
+      "configFile": ".babelrc"
+    }
+  },
+  "extends": "standard",
+  "rules": {
+    "no-multi-spaces": [
+      "error",
+      {
+        "exceptions": {
+          "ImportDeclaration": true,
+          "VariableDeclarator": true
+        }
+      }
+    ]
+  }
+}
