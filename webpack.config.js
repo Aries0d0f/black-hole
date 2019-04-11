@@ -25,56 +25,54 @@ const path = require('path');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
-	module: {
-		rules: [
-			{
-				include: [path.resolve(__dirname, 'src')],
-				loader: 'babel-loader',
+  module: {
+    rules: [{
+      include: [path.resolve(__dirname, 'src')],
+      loader: 'babel-loader',
 
-				options: {
-					plugins: ['syntax-dynamic-import'],
+      options: {
+        plugins: ['@babel/plugin-syntax-dynamic-import', '@babel/plugin-transform-runtime'],
 
-					presets: [
-						[
-							'@babel/preset-env',
-							{
-								modules: false
-							}
-						]
-					]
-				},
+        presets: [
+          [
+            '@babel/preset-env',
+            {
+              modules: false
+            }
+          ]
+        ]
+      },
 
-				test: /\.js$/
-			}
-		]
-	},
+      test: /\.js$/
+    }]
+  },
 
-	entry: {
-		blackhole: './src/index.js'
-	},
+  entry: {
+    blackhole: './src/index.js'
+  },
 
-	output: {
-		filename: '[name].js',
-		path: path.resolve(__dirname, 'lib')
+  output: {
+    filename: '[name].js',
+    path: path.resolve(__dirname, 'lib')
   },
 
   target: 'node',
 
-	mode: 'development',
+  mode: 'development',
 
-	optimization: {
-		splitChunks: {
-			cacheGroups: {
-				vendors: {
-					priority: -10,
-					test: /[\\/]node_modules[\\/]/
-				}
-			},
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        vendors: {
+          priority: -10,
+          test: /[\\/]node_modules[\\/]/
+        }
+      },
 
-			chunks: 'async',
-			minChunks: 1,
-			minSize: 30000,
-			name: true
-		}
+      chunks: 'async',
+      minChunks: 1,
+      minSize: 30000,
+      name: true
+    }
   }
 };
