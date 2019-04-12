@@ -9,7 +9,7 @@ const linkPackage = async (pkgName, version) => {
   try {
     const pkgPath = path.resolve(process.cwd(), 'node_modules', pkgName)
     const targetDir = path.resolve(config.packageDir, version ? `${pkgName}^${version}` : pkgName)
-    await exec(`mkdir -p ${targetDir.split('/').slice(0, targetDir.split('/').length - 1).join('/')} && mv -f ${pkgPath} ${targetDir} && ln -s ${targetDir} ${pkgPath}`)
+    await exec(`mkdir -p ${targetDir} && cp -R ${pkgPath} ${targetDir} && rm -rf ${pkgPath} && ln -s ${targetDir}/${pkgName.split('/')[pkgName.split('/').length - 1]} ${pkgPath}`)
   } catch (error) {
     console.error(error)
   }
